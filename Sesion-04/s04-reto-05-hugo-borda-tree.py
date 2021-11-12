@@ -6,10 +6,16 @@ class Archivo() :
     def __init__(self, ruta) :
         """ Crea objeto Archivo a partir de ruta """
         self.__ruta = ruta
-        self.tamanio = os.path.getsize(ruta) # arch -> ls.py
-        self.fecha = os.path.getmtime(ruta)
+        try :
+            self.tamanio = os.path.getsize(ruta) # arch -> ls.py
+            self.fecha = os.path.getmtime(ruta)
+        except FileNotFoundError :
+            pass
+        except OSError :
+            pass
+        
 
-    @property
+    @property #Cambia el método como una propiedad y no recibe parámetros se llama sin paréntesis
     def get_ruta(self) :
         return self.__ruta
 
@@ -29,7 +35,10 @@ class Archivo() :
 class Carpeta(Archivo) :
     def lista_elementos(self, ) :
         """ Obtiene la lista de elementos de la carpeta """
-        archivos :list = os.listdir(self.get_ruta) # archviso => ["uno.py", "dos.py",]
+        try :
+            archivos :list = os.listdir(self.get_ruta) # archviso => ["uno.py", "dos.py",]
+        except PermissionError :
+            archivos :list = []
         # elementos [Archivo("uno.py"),Archivo("dos.py"), Carpeta("c:/")]    
         elementos = []
         for arch in archivos :
