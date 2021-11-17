@@ -12,6 +12,10 @@ class Vehiculo() :
     def __str__(self) -> str:
         """ Regresa la descripción de vehículo"""
         return f"Velocidad: {self.velocidad}, número de ruedas: {self.numero_ruedas}, medio: {self.medio}"        
+
+    def avanzar():
+        """ Imprime mensaje """
+        print("Vehículo avanza")
   
 
 def main() :

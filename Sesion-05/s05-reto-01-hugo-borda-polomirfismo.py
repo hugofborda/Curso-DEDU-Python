@@ -15,12 +15,12 @@ class Vehiculo() :
 
     def __str__(self) -> str:
         """ Regresa la descripción de vehículo"""
-        return f"Velocidad: {self.__velocidad}, medio: {self.__medio}"    
+        return f"Velocidad: {self.__velocidad}, medio: {self.__medio}"       
     
     def avanzar():
         """ Imprime mensaje """
         print("Vehículo avanza")
-    
+ 
 
 class Aereos(Vehiculo) :
     """ Clase que define los vehículos aéreos """
@@ -37,6 +37,10 @@ class Aereos(Vehiculo) :
         """ Regresa la descripción de aéreos"""
         return super().__str__() + f", número de hélices: {self.__numero_helices}"
 
+    def avanzar():
+        """ Imprime mensaje """
+        print("Vehículo avanza por el aire")        
+
 class Terrestres(Vehiculo) :
     """ Clase que define los vehículos terrestres"""    
 
@@ -52,6 +56,10 @@ class Terrestres(Vehiculo) :
     def __str__(self) -> str:
         """ Regresa la descripción de vehículo"""
         return super().__str__() + f", número de ruedas: {self.__numero_ruedas}"
+    
+    def avanzar():
+        """ Imprime mensaje """
+        print("Vehículo avanza por la tierra")        
 
 
 
@@ -70,6 +78,10 @@ class Acuaticos(Vehiculo) :
     def __str__(self) -> str:
         """ Regresa la descripción de acuáticos"""
         return super().__str__() + f", número de aspas: {self.__aspas}"
+    
+    def avanzar():
+        """ Imprime mensaje """
+        print("Vehículo avanza por el agua")        
   
 
 def main() :
