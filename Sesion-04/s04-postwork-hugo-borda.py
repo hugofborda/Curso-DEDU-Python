@@ -1,6 +1,6 @@
 from tarjeta.usuario import Usuario
-from tarjeta.tarjeta import Tarjeta
 from tarjeta.varios import borrar_terminal
+
 def main():
     """ Programa principal """
     borrar_terminal()
