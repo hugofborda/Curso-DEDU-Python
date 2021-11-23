@@ -1,0 +1,47 @@
+[
+    {
+        "tama\u00f1o": 98,
+        "fecha": "22-11-2021 18:34:52",
+        "ruta": ".\\autos.csv"
+    },
+    {
+        "tama\u00f1o": 290,
+        "fecha": "17-11-2021 19:27:49",
+        "ruta": ".\\autos.txt"
+    },
+    {
+        "tama\u00f1o": 22256,
+        "fecha": "16-11-2021 10:16:50",
+        "ruta": ".\\lista.txt"
+    },
+    {
+        "tama\u00f1o": 2211,
+        "fecha": "17-11-2021 19:27:29",
+        "ruta": ".\\s06-reto-01-hugo-borda-autos.py"
+    },
+    {
+        "tama\u00f1o": 3407,
+        "fecha": "22-11-2021 18:34:30",
+        "ruta": ".\\s06-reto-02-hugo-borda-autos-csv.py"
+    },
+    {
+        "tama\u00f1o": 6010,
+        "fecha": "23-11-2021 07:17:05",
+        "ruta": ".\\s06-reto-03-hugo-borda-tree-json.py"
+    },
+    {
+        "tama\u00f1o": 4909,
+        "fecha": "19-11-2021 08:35:58",
+        "ruta": ".\\s06-reto-05-hugo-borda-tree.py"
+    },
+    {
+        "tama\u00f1o": 271,
+        "fecha": "19-11-2021 08:36:10",
+        "ruta": ".\\salida.csv"
+    },
+    {
+        "tama\u00f1o": 22312,
+        "fecha": "16-11-2021 10:31:11",
+        "ruta": ".\\salida.txt"
+    }
+]

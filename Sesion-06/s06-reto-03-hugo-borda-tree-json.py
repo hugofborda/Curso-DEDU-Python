@@ -1,6 +1,7 @@
 import os
 import click
 import csv
+import json
 import time
 
 class Archivo() :
@@ -40,9 +41,17 @@ class Archivo() :
 
     @property
     def tupla_str(self) :
-        """ Representación en tupla de un ARchivo con fecha en cadena"""
+        """ Representación en tupla de un Archivo con fecha en cadena"""
         return (self.tamanio, self.fecha_str, self.get_ruta)
-        
+    
+    @property
+    def dict(self) :
+        """ Representación en dict de un Archivo con fecha en cadena"""
+        diccionario :dict = {}
+        diccionario["tamaño"]= self.tamanio
+        diccionario["fecha"]= self.fecha_str
+        diccionario["ruta"]= self.get_ruta
+        return diccionario
 
 class Carpeta(Archivo) :
     def lista_elementos(self, ) :
@@ -104,12 +113,25 @@ def guarda_en_archivo_csv(lista, ruta):
            # arch_texto.write("\n")      
            escritor_csv.writerow(elemento.tupla_str)
 
+def guarda_en_archivo_json(lista, ruta):
+    """ Guarda los elementos de la lista en el archivo 'ruta' en formato json """
+    datos_dicts =[]
+    for elemento in lista :
+        datos_dicts.append(elemento.dict)
+
+    with open(ruta,"w") as arch_salida :
+        #arch_salida.write(json.dumps(datos_dicts))
+        json.dump(datos_dicts,arch_salida,indent =4)
+
+
 #Controlador
 @click.command()
 @click.argument("carpeta", default=".", type=click.Path(exists=True))
 @click.option("--csv","salida_csv", is_flag=True, 
                 help="Guarda los resultados en formato csv") #Opciones de línea de comando, se renombra csv para que se renombre la entrada del comando, con flag se regresa al escribir la opción csv como true, en caso contrario false en la variable salida_csv
-def main(carpeta, salida_csv) :
+@click.option("--json","salida_json", is_flag=True, 
+                help="Guarda los resultados en formato json") #Opciones de línea de comando, se renombra csv para que se renombre la entrada del comando, con flag se regresa al escribir la opción csv como true, en caso contrario false en la variable salida_csv
+def main(carpeta, salida_csv,salida_json) :
     """
     Lista los archivos y carpetas de la carpeta actual o de sus subcarpetas
     """
@@ -118,6 +140,8 @@ def main(carpeta, salida_csv) :
    
     if salida_csv :
         guarda_en_archivo_csv(elementos, "salida.csv")
+    elif salida_json :
+        guarda_en_archivo_json(elementos, "salida.json")
     else :    
         #imprime_en_texto(elementos)
         guarda_en_archivo(elementos, "salida.txt")
