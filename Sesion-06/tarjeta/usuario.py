@@ -49,14 +49,13 @@ class Usuario():
     
     def __eliminar_tarjeta(self, tarjeta_eliminar) :
         """ Eliminar una tarjeta """
-        tarjeta_eliminar :str = input("Digite el nombre de la tarjeta a eliminar: ")
         for tarjeta in self.__tarjetas :
-            if tarjeta_eliminar == tarjeta.obtener_nombre() :
+            if tarjeta_eliminar.strip().lower() == tarjeta.obtener_nombre().strip().lower() :
                 self.__tarjetas.remove(tarjeta)
                 self.guardar_json()
                 return True
-            else :
-                return False
+        return False
+                
     
     def imprimir_tarjetas(self) :
         for tarjeta in self.__tarjetas :

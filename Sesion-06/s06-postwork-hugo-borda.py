@@ -14,7 +14,8 @@ MENU_USUARIO = ((1,"Crear usuario"),
 
 MENU_OPCIONES_USUARIO = ((1,"Adicionar tarjeta"),
     (2,"Imprimir tarjetas"),
-    (3,"Regresar al menu de usuario"))
+    (3,"Eliminar tarjeta"),
+    (4,"Regresar al menu de usuario"))
 
 RUTA_ARCHIVOS_JSON = "."
 
@@ -83,7 +84,8 @@ def menu_usuario() :
     if opcion == 4 :
         exit()        
     else :
-        "La opcion seleccionada no es valida"
+        print("La opcion seleccionada no es valida")
+        menu_usuario()
 
 def menu_opciones_usuario(usuario) :
     """ Función de selección de menú de opciones de usuario """
@@ -98,10 +100,14 @@ def menu_opciones_usuario(usuario) :
         usuario.imprimir_tarjetas()
         menu_opciones_usuario(usuario)
     if opcion == 3 :
+        usuario.eliminar_tarjeta()
+        menu_opciones_usuario(usuario)        
+    if opcion == 4 :
         borrar_terminal()
         menu_usuario()
     else :
-        "La opcion seleccionada no es valida"
+        print("La opcion seleccionada no es valida")
+        menu_opciones_usuario(usuario) 
 
 def main() :
     """ Programa principal """
