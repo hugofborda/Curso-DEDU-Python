@@ -1,0 +1,21 @@
+[
+    {
+        "nombre": "Juan",
+        "tarjetas": [
+            {
+                "nombre": "Tarjeta1",
+                "interes_anual": 12.0,
+                "deuda_actual": 1200.0,
+                "pago": 200.0,
+                "cargo": 100.0
+            },
+            {
+                "nombre": "Tarjeta2",
+                "interes_anual": 13.0,
+                "deuda_actual": 1300.0,
+                "pago": 130.0,
+                "cargo": 100.0
+            }
+        ]
+    }
+]

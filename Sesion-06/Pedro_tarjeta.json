@@ -1,0 +1,14 @@
+[
+    {
+        "nombre": "Pedro",
+        "tarjetas": [
+            {
+                "nombre": "Visa",
+                "interes_anual": 13.0,
+                "deuda_actual": 1300.0,
+                "pago": 150.0,
+                "cargo": 150.0
+            }
+        ]
+    }
+]
