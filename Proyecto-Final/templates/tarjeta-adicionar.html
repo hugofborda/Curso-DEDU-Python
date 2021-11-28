@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+
+{% block titulo %} {{ titulo }} {% endblock %}
+
+{% block contenido %}
+<div class="contenido">
+    <section class="tarjeta-titulo">
+        Adicionar tarjeta a: {{ usuario.nombre }}
+    </section>
+    <section class="tarjeta">
+        <form class="tarjeta" method="POST">
+            <input type=hidden name="nombre-usuario" value="{{ usuario.nombre}}" required/>
+            <p>
+              <label>Nombre:</label>
+              <input type=text name="nombre" required/>
+            </p>
+            <p>
+                <label>Interes anual:</label>
+                <input type=number name="interes-anual" required min=1 max=100/>
+            </p>
+
+            <p>
+                <label>Deuda:</label>
+                <input type=number name="deuda" required />
+            </p>
+
+            <p>
+                <label>Pago:</label>
+                <input type=number name="pago" required />
+            </p>
+            <p>
+                <label>Cargo:</label>
+                <input type=number name="cargo" required />
+            </p>
+
+            <p class="botones">
+                <button type="submit">Guardar</button>
+            </p>
+        </form>        
+    </section>
+</div>
+
+{% endblock %}

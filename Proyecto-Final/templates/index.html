@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block titulo %} {{ titulo }} {% endblock %}
+
+{% block contenido %}
+<div class="contenido">
+    <section class="tarjeta-titulo">
+        Lista de usuarios
+    </section>
+    {% for usuario in usuarios %}
+    <section class="tarjeta">
+        <aside>
+          <span class="etiqueta">Nombre:</span>
+          {{ usuario.nombre }}
+        </aside>
+        <p>
+          <label>Cantidad de tarjetas:</label>
+          <label>{{ usuario.tarjetas|length }}</label>
+        </p>
+    </section>
+    {% endfor %}
+</div>
+{% endblock %}

@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+
+{% block titulo %} {{ titulo }} {% endblock %}
+
+{% block contenido %}
+<div class="contenido">
+    <section class="tarjeta-titulo">
+        Lista usuarios existentes
+    </section>
+    {% for usuario in usuarios %}
+    <section class="tarjeta">
+        <aside>
+          <span class="etiqueta">Nombre:</span>
+        {{ usuario.nombre }}
+        </aside>
+        <aside class="botones">
+          {% if "modificar" in accion %}
+            <a class="btn" href="/usuario/modificar/{{usuario.nombre}}/">
+              &#x270E; Modificar
+            </a>
+          {% elif "eliminar" in accion %}
+            <a class="btn" href="/usuario/eliminar/{{usuario.nombre}}/">
+              &#x270E; Eliminar
+            </a>
+          {% else %}
+            <a class="btn" href="/usuario/reporte/{{usuario.nombre}}/">
+              &#x270E; Reporte
+            </a>
+            <a class="btn" href="/usuario/tarjetas/{{usuario.nombre}}/">
+              &#x270E; Tarjetas
+            </a>
+          {% endif %}
+        </aside>
+    </section>
+    {% endfor %}
+</div>
+{% endblock %}

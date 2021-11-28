@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+
+{% block titulo %} {{ titulo }} {% endblock %}
+
+{% block contenido %}
+<div class="contenido">
+    <section class="tarjeta-titulo">
+        Reporte de tarjetas de: {{ usuario.nombre }}
+    </section>
+    <section class="tarjeta">
+            <table>
+                <thead>
+                    <th>Nombre</th>
+                    <th>Interés anual</th>
+                    <th>Pago</th>
+                    <th>Cargo</th>
+                    <th>Deuda</th>
+                    <th>Deuda -Pago</th>
+                    <th>Deuda -Pago +Interés</th>
+                    <th>Nueva deuda</th>
+                </thead>
+                <tbody>
+                    {% for tarjeta in usuario.tarjetas %}
+                    <tr>
+                        <td>{{ tarjeta.obtener_nombre() }}</td>
+                        <td>{{ '%0.1f'|format(tarjeta.obtener_interes_anual()|float) }}%</td>
+                        <td>{{ '%0.1f'|format(tarjeta.obtener_pago()|float) }}</td>
+                        <td>{{ '%0.1f'|format(tarjeta.obtener_cargo()|float) }}</td>
+                        <td>{{ '%0.1f'|format(tarjeta.obtener_deuda_actual()|float) }}</td>
+                        <td>{{ '%0.1f'|format(tarjeta.obtener_deuda_despues_del_pago()|float) }}</td>
+                        <td>{{ '%0.1f'|format(tarjeta.obtener_deuda_recalculada()|float) }}</td>
+                        <td>{{ '%0.1f'|format(tarjeta.obtener_nueva_deuda()|float) }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            
+    </section>
+</div>
+
+{% endblock %}

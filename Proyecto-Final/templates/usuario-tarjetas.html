@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+
+{% block titulo %} {{ titulo }} {% endblock %}
+
+{% block contenido %}
+<div class="contenido">
+    <section class="tarjeta-titulo">
+        Lista de tarjetas de: {{ usuario.nombre }}
+        <a class="btn" href="/usuario/tarjeta-adicionar/{{usuario.nombre}}/">
+          &#x270E; Adicionar
+        </a>
+    </section>   
+    
+    {% for tarjeta in usuario.tarjetas %}
+    <section class="tarjeta">
+        <aside>
+            <span class="etiqueta">Nombre:</span>
+            {{ tarjeta.obtener_nombre() }}
+        </aside>    
+        <aside>
+          <span class="etiqueta">Interés anual:</span>
+          {{ '%0.1f'|format(tarjeta.obtener_interes_anual()|float) }}
+      </aside>  
+        <aside>
+            <span class="etiqueta">Pago:</span>
+            {{ '%0.1f'|format(tarjeta.obtener_pago()|float) }}
+        </aside>    
+        <aside>
+            <span class="etiqueta">Cargo:</span>
+            {{ '%0.1f'|format(tarjeta.obtener_cargo()|float) }}
+        </aside>    
+        <aside>
+            <span class="etiqueta">Deuda actual:</span>
+            {{ '%0.1f'|format(tarjeta.obtener_deuda_actual()|float) }}
+        </aside>    
+        <aside>
+            <span class="etiqueta">Deuda -Pago:</span>
+            {{ '%0.1f'|format(tarjeta.obtener_deuda_despues_del_pago()|float) }}
+        </aside>    
+        <aside>
+            <span class="etiqueta">Deuda -Pago +Interés:</span>
+            {{ '%0.1f'|format(tarjeta.obtener_deuda_recalculada()|float) }}
+        </aside>    
+        <aside>
+            <span class="etiqueta">Nueva deuda:</span>
+            {{ '%0.1f'|format(tarjeta.obtener_nueva_deuda()|float) }}
+        </aside>    
+                
+        <aside class="botones">
+            <a class="btn" href="/usuario/tarjeta-eliminar/{{usuario.nombre}}/{{tarjeta.obtener_nombre()}}">
+              &#x270E; Eliminar
+            </a>
+        </aside>
+    </section>
+    {% endfor %}
+</div>
+{% endblock %}

@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block titulo %} {{ titulo }} {% endblock %}
+
+{% block contenido %}
+<div class="contenido">
+    <section class="tarjeta-titulo">
+        Eliminar usuario
+    </section>
+    <section class="tarjeta">
+        <form class="usuario" method="POST">
+            <p>
+              <label>Nombre:</label>
+              <label>{{ usuario.nombre }}</label>
+            </p>
+            <p>
+              <label>Cantidad de tarjetas</label>
+              <label>{{ usuario.tarjetas|length }}</label>
+            </p>
+            
+            <p class="botones">
+                <button type="submit">Eliminar</button>
+            </p>
+        </form>        
+    </section>
+</div>
+
+{% endblock %}

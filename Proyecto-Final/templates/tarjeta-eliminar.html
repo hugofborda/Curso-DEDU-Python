@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+
+{% block titulo %} {{ titulo }} {% endblock %}
+
+{% block contenido %}
+<div class="contenido">
+    <section class="tarjeta-titulo">
+        Eliminar tarjeta de: {{ usuario }}
+    </section>
+    <section class="tarjeta">
+        <form class="usuario" method="POST">
+            <p>
+              <label>Nombre:</label>
+              <label>{{ tarjeta.obtener_nombre() }}</label>
+            </p>
+            <p>
+                <label>Interes anual:</label>
+                <label>{{ tarjeta.obtener_interes_anual() }}</label>
+            </p>
+
+            <p>
+                <label>Deuda:</label>
+                <label>{{ tarjeta.obtener_deuda_actual() }}</label>
+            </p>
+
+            <p>
+                <label>Pago:</label>
+                <label>{{ tarjeta.obtener_pago() }}</label>
+            </p>
+            <p>
+                <label>Cargo:</label>
+                <label>{{ tarjeta.obtener_cargo() }}</label>
+            </p>
+            
+            <p class="botones">
+                <button type="submit">Eliminar</button>
+            </p>
+        </form>        
+    </section>
+</div>
+
+{% endblock %}
