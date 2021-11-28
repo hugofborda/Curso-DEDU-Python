@@ -1,0 +1,66 @@
+[
+    {
+        "nombre": "Juan",
+        "tarjetas": [
+            {
+                "nombre": "Tarjeta1",
+                "tasa": 12.0,
+                "deuda": 1200.0,
+                "pagos": 200.0,
+                "cargos": 100.0
+            },
+            {
+                "nombre": "Tarjeta2",
+                "tasa": 13.0,
+                "deuda": 1300.0,
+                "pagos": 200.0,
+                "cargos": 100.0
+            },
+            {
+                "nombre": "Tarjeta3",
+                "tasa": 14.0,
+                "deuda": 1400.0,
+                "pagos": 140.0,
+                "cargos": 40.0
+            }
+        ]
+    },
+    {
+        "nombre": "Pedro",
+        "tarjetas": [
+            {
+                "nombre": "Visa",
+                "tasa": 13.0,
+                "deuda": 1300.0,
+                "pagos": 150.0,
+                "cargos": 150.0
+            },
+            {
+                "nombre": "Maestro",
+                "tasa": 16.0,
+                "deuda": 1600.0,
+                "pagos": 160.0,
+                "cargos": 60.0
+            }
+        ]
+    },
+    {
+        "nombre": "Manuel",
+        "tarjetas": [
+            {
+                "nombre": "Virtual",
+                "tasa": 12.0,
+                "deuda": 1200.0,
+                "pagos": 120.0,
+                "cargos": 100.0
+            },
+            {
+                "nombre": "Fisica",
+                "tasa": 14.0,
+                "deuda": 1400.0,
+                "pagos": 100.0,
+                "cargos": 150.0
+            }
+        ]
+    }
+]

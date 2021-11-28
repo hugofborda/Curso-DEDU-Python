@@ -1,0 +1,14 @@
+[
+    {
+        "id": 0,
+        "nombre": "PC Escritorio",
+        "precio": "4000",
+        "descripcion": "Pc de escritorio"
+    },
+    {
+        "id": 1,
+        "nombre": "Teclado inhal\u00e1mbrico",
+        "precio": "30",
+        "descripcion": "Teclado para PC inhal\u00e1mbrico"
+    }
+]

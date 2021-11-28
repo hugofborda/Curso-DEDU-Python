@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block titulo %} {{ titulo }} {% endblock %}
+
+{% block contenido %}
+<div class="contenido">
+    <section class="tarjeta-titulo">
+        Baja de producto
+    </section>
+    <section class="tarjeta">
+        <form class="producto" method="POST">
+            <p>
+              <label>Nombre:</label>
+              <label>{{ producto.nombre }}</label>
+            </p>
+            <p>
+              <label>Precio</label>
+              <label>{{ producto.precio }}</label>
+            </p>
+            <p>
+              <label>Descriopción</label>
+              <label>{{ producto.descripcion }}</label>
+            </p>
+            <p class="botones">
+                <button type="submit">Dar de baja</button>
+            </p>
+        </form>        
+    </section>
+</div>
+
+{% endblock %}
