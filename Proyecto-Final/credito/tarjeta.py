@@ -121,7 +121,7 @@ class Tarjeta() :
         Genera los pagos distintos de una tarjeta
         """
         self.generar_reporte()
-        pagos_list :list = obtener_pagos()
+        pagos_list :list = self.obtener_pagos()
 
         for pago in pagos_list :
             self.asignar_pago(pago)
