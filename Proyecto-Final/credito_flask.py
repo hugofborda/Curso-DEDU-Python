@@ -102,4 +102,5 @@ def tarjeta_eliminar(usuario_, tarjeta_):
 
 
 if __name__ == "__main__":
+    controlador.inicializa_bd()
     app.run(debug=True, host="0.0.0.0")    

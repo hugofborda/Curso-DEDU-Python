@@ -1,27 +1,23 @@
+import datos.bd as bd
+from sqlalchemy import Column, String
 from .tarjeta import Tarjeta
 from utilidades.archivos import existe_archivo, eliminar_archivo
 import json
 
-class Usuario():
+class Usuario(bd.Base):
     """ Clase que define un usuario de tarjetas de crédito """
+    __tablename__ = 'usuario'
+
+    nombre = Column(String, primary_key=True)
+
     def __init__(self, nombre = None) -> None:
-       self.__nombre = nombre
-       self.__tarjetas = []
-    
-    @property
-    def nombre(self) :
-        """ Obtiene nombre de usuario """
-        return self.__nombre
+       self.nombre = nombre
+       self.tarjetas = []
 
     @property
     def nombre_archivo(self) :
         """ Obtiene nombre de usuario """
-        return self.__nombre.replace(" ","_")+"_tarjeta.json"
-  
-    @property
-    def tarjetas(self) :
-        """ Propiedad de listas de tarjetas """
-        return self.__tarjetas
+        return self.nombre.replace(" ","_")+"_tarjeta.json"
 
     @property
     def dict(self):
@@ -35,27 +31,31 @@ class Usuario():
 
     def asignar_nombre(self,nombre) :
         """ Asignar nombre """
-        self.__nombre = nombre
+        self.nombre = nombre
+
+    def asignar_tarjetas(self, tarjetas):
+        """ Asignar tarjetas """
+        self.tarjetas = tarjetas
     
     def asigna_de_dict(self,usuario_dict) :
         self.asignar_nombre = usuario_dict["nombre"]
 
     def __agregar_tarjeta(self,tarjeta) :
         """ Agrega una nueva tarjeta """
-        self.__tarjetas.append(tarjeta)
+        self.tarjetas.append(tarjeta)
         self.guardar_json()
     
     def __eliminar_tarjeta(self, tarjeta_eliminar) :
         """ Eliminar una tarjeta """
-        for tarjeta in self.__tarjetas :
+        for tarjeta in self.tarjetas :
             if tarjeta_eliminar.strip().lower() == tarjeta.obtener_nombre().strip().lower() :
-                self.__tarjetas.remove(tarjeta)
+                self.tarjetas.remove(tarjeta)
                 self.guardar_json()
                 return True
         return False
                 
     def imprimir_tarjetas(self) :
-        for tarjeta in self.__tarjetas :
+        for tarjeta in self.tarjetas :
             tarjeta.generar_reporte()
 
     def eliminar_tarjeta(self) :
@@ -67,8 +67,8 @@ class Usuario():
             print(f" No fue posible eliminar la tarjeta: {tarjeta_eliminar}, no se encuentra en el listado de tarjetas.")
 
     def eliminar_ultima_tarjeta(self) :
-        tarjeta_eliminar = self.__tarjetas[-1].obtener_nombre()
-        self.__tarjetas.pop()
+        tarjeta_eliminar = self.tarjetas[-1].obtener_nombre()
+        self.tarjetas.pop()
         print("#"*50 +" Tarjeta eliminada "+ "#"*50)
         print(f"La tarjeta: {tarjeta_eliminar}, ha sido eliminada.")
         print("#"*50 +" Tarjeta eliminada "+ "#"*50)
@@ -120,4 +120,3 @@ class Usuario():
             tarjeta = Tarjeta()
             tarjeta.decode_json(tarjeta_json)
             self.tarjetas.append(tarjeta)
-            

@@ -1,21 +1,28 @@
-from utilidades.entradas import lee_numero
+import datos.bd as bd
 import json
+from sqlalchemy import Column, String, Float
+from utilidades.entradas import lee_numero
 
 
-class Tarjeta() :
+
+class Tarjeta(bd.Base) :
     """ Clase que define una tarjeta de crédito"""
-    __nombre : str
-    __interes_anual : float
-    __deuda_actual : float
-    __pago : float
-    __cargo : float 
+    __tablename__ = 'tarjeta'
 
-    def __init__(self, nombre=None, interes_anual=0, deuda_actual=0, pago=0, cargo=0) -> None:
+    nombre = Column(String, primary_key=True)
+    usuario = Column(String, primary_key=True)
+    interes_anual = Column(Float,nullable=False)
+    deuda_actual = Column(Float,nullable=False)
+    pago = Column(Float,nullable=False)
+    cargo = Column(Float,nullable=False)
+
+    def __init__(self, nombre=None, interes_anual=0, deuda_actual=0, pago=0, cargo=0, usuario = None) -> None:
         self.asignar_nombre(nombre)
         self.asignar_interes_anual(interes_anual)
         self.asignar_deuda_actual(deuda_actual)
         self.asignar_pago(pago)
         self.asignar_cargo(cargo) 
+        self.asignar_usuario(usuario)
 
     @property
     def dict(self) :
@@ -27,49 +34,57 @@ class Tarjeta() :
         tarjeta_dict["cargo"] = self.obtener_cargo()
         return tarjeta_dict
 
+    def asignar_usuario(self, usuario) :
+        """ Asigna nombre """
+        self.usuario = usuario
+
     def asignar_nombre(self, nombre) :
         """ Asigna nombre """
-        self.__nombre = nombre
+        self.nombre = nombre
 
     def asignar_interes_anual(self, interes_anual) :
         """ Asigna interés anual """
-        self.__interes_anual = interes_anual
+        self.interes_anual = interes_anual
 
     def asignar_deuda_actual(self, deuda_actual) :
         """ Asigna deuda actual """
-        self.__deuda_actual = deuda_actual
+        self.deuda_actual = deuda_actual
 
     def asignar_pago(self, pago) :
         """ Asigna pago """
-        self.__pago = pago                
+        self.pago = pago                
 
     def asignar_cargo(self, cargo) :
         """ Asigna cargo """
-        self.__cargo = cargo  
+        self.cargo = cargo  
+
+    def obtener_usuario(self) :
+        """ Obtiene nombre """
+        return self.usuario
 
     def obtener_nombre(self) :
         """ Obtiene nombre """
-        return self.__nombre
+        return self.nombre
 
     def obtener_interes_anual(self) :
         """ Obtiene interés anual """
-        return self.__interes_anual 
+        return self.interes_anual 
 
     def obtener_deuda_actual(self) :
         """ Obtiene deuda actual """
-        return self.__deuda_actual
+        return self.deuda_actual
 
     def obtener_pago(self) :
         """ Obtiene pago"""
-        return self.__pago                
+        return self.pago                
 
     def obtener_cargo(self) :
         """ Obtiene cargo """
-        return self.__cargo
+        return self.cargo
 
     def obtener_interes_mensual(self) :
         """ Obtiene interés mensual """
-        return self.__interes_anual / 12
+        return self.interes_anual / 12
     
     def obtener_deuda_recalculada(self) :
         """ Obtiene deuda recalculada """

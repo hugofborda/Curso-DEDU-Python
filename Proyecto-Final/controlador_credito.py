@@ -1,61 +1,56 @@
-from utilidades.archivos import lista_archivos_json
+import datos.bd as bd
 from credito.usuario import Usuario
 from credito.tarjeta import Tarjeta
 
-RUTA_ARCHIVOS_JSON = "."
-
 def get_usuarios() :
     """ Obtiene los usuarios """
-    usuarios = []
-    archivos_json = lista_archivos_json(RUTA_ARCHIVOS_JSON)
-    for archivo_json in archivos_json :
-        usuario = Usuario()
-        usuario.asigna_json_a_usuario(archivo_json)
-        usuarios.append(usuario)
+    usuarios = bd.session.query(Usuario).all()
+    for usuario in usuarios :
+        tarjetas = bd.session.query(Tarjeta).filter(Tarjeta.usuario == usuario.nombre).all()
+        usuario.asignar_tarjetas(tarjetas)
     return usuarios
 
 def get_usuario(usuario_) :
     """ Obtiene usuario dado su nombre"""
-    usuarios = get_usuarios()
-    usuario_encontrado = None
-    for usuario in usuarios:
-        if usuario.nombre == usuario_:
-            usuario_encontrado = usuario
-            break
-    return usuario_encontrado
+    usuario = bd.session.query(Usuario).get(usuario_)
+    if usuario != None :
+        tarjetas = bd.session.query(Tarjeta).filter(Tarjeta.usuario == usuario.nombre).all()
+        if tarjetas != None :
+            usuario.asignar_tarjetas(tarjetas)
+    return usuario
 
 def get_tarjeta(usuario_, tarjeta_) :
     """ Obtiene tarjeta dado su nombre y su usuario """
-    usuario = get_usuario(usuario_)
-    tarjeta_encontrada = None
-    for tarjeta in usuario.tarjetas :
-        if tarjeta.obtener_nombre() == tarjeta_:
-            tarjeta_encontrada = tarjeta
-            break
-    return tarjeta_encontrada
+    tarjeta = bd.session.query(Tarjeta).filter(Tarjeta.usuario == usuario_ and Tarjeta.nombre == tarjeta_).first()
+    return tarjeta
 
-def add_usuario(nombre):
+def add_usuario(usuario_):
     """ Adiciona usuario """
-    usuario = Usuario(nombre)
-    if (usuario.existe()) :
+    usuario = get_usuario(usuario_)
+    if (usuario != None) :
         return False
     else :
-        usuario.guardar_json()
+        usuario = Usuario(usuario_)
+        bd.session.add(usuario)
+        bd.session.commit()
         return True
 
-def del_usuario(nombre):
+def del_usuario(usuario_):
     """ Eliminar usuario """
-    usuario = Usuario(nombre)
-    usuario.eliminar_json()
+    bd.session.query(Usuario).filter(Usuario.nombre == usuario_).delete()
+    bd.session.commit()
 
 def add_tarjeta_usuario(usuario, nombre, deuda, interes_anual, pago, cargo ):
     "Adiciona tarjeta a usuario "
-    usuario = get_usuario(usuario)
-    tarjeta =  Tarjeta(nombre,interes_anual,deuda,pago,cargo)      
-    usuario.agregar_tarjeta_flask(tarjeta)
+    tarjeta =  Tarjeta(nombre,interes_anual,deuda,pago,cargo,usuario)      
+    bd.session.add(tarjeta)
+    bd.session.commit()
 
-def del_tarjeta_usuario(usuario, tarjeta) :
+def del_tarjeta_usuario(usuario_, tarjeta_) :
     """Elimina tarjeta a usuairo """
-    usuario = get_usuario(usuario)
-    usuario.eliminar_tarjeta_flask(tarjeta)        
+    bd.session.query(Tarjeta).filter(Tarjeta.usuario == usuario_ and Tarjeta.nombre == tarjeta_).delete()
+    bd.session.commit()
+
+def inicializa_bd() :
+    bd.Base.metadata.create_all(bd.engine)
             
