@@ -3,16 +3,9 @@
         "nombre": "Andrea",
         "tarjetas": [
             {
-                "nombre": "Visa",
-                "interes_anual": 15.0,
-                "deuda_actual": 5000.0,
-                "pago": 400.0,
-                "cargo": 50.0
-            },
-            {
-                "nombre": "Dinners",
+                "nombre": "Tarjeta1",
                 "interes_anual": 12.0,
-                "deuda_actual": 1500.0,
+                "deuda_actual": 5000.0,
                 "pago": 150.0,
                 "cargo": 60.0
             }
